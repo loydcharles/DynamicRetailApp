@@ -26,7 +26,7 @@ mongoose.connect(
       console.log("Error" + err);
     }
     else {
-      console.log("DB connection successful: " + res.stringify);      
+      console.log("DB connection successful");      
     }
   }
 );

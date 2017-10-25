@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const db = require("../models.js");
+const db = require("../models");
 mongoose.Promise = global.Promise;
 
 // This file empties the Books collection and inserts the books below
@@ -16,6 +16,7 @@ mongoose.connect(
     else {
       console.log("Client DB connection successful: " + res.stringify);      
     }
+  }
 );
 
 const productSeed = [
@@ -42,9 +43,9 @@ const productSeed = [
   }
 ];
 
-db.Products
-  .remove({}
-  .then(() => db.Products.collection.insertMany(productSeed))
+db.Product
+  .remove({})
+  .then(() => db.Product.collection.insertMany(productSeed))
   .then(data => {
     console.log(data.insertedIds.length + " records inserted!");
     process.exit(0);
@@ -52,4 +53,4 @@ db.Products
   .catch(err => {
     console.error(err);
     process.exit(1);
-  });
+  })
