@@ -46,7 +46,7 @@ const productSeed = [
 const orderSeed = [
   {
     quantity: 1,
-    product: 1
+    product: [],
     date: new Date(Date.now())
   }];
 

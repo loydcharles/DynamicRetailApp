@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
+import { Input1 } from "../../components/Quantity";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
@@ -116,7 +117,13 @@ class Products extends Component {
                           {product.category} ==> {product.item} ==> {product.price}
                         </strong>
                       </a>
-                      <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
+                  <Input1
+                value={this.state.quantity}
+                onChange={this.handleInputChange}
+                name="quantity"
+                placeholder="Qty)"
+              />
+              <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
                     </ListItem>
                   );
                 })}
