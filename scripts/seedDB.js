@@ -23,7 +23,7 @@ const productSeed = [
   {
     category: "Breakfast",
     item: "Egg and bacon",
-    desc: "how to become obesse",
+    desc: "how to become obese",
     price: "5.00",
     date: new Date(Date.now())
   },
@@ -42,6 +42,13 @@ const productSeed = [
     date: new Date(Date.now())
   }
 ];
+
+const orderSeed = [
+  {
+    quantity: 1,
+    product: 1
+    date: new Date(Date.now())
+  }];
 
 db.Product
   .remove({})
