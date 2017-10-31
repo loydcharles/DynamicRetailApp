@@ -120,8 +120,8 @@ class Products extends Component {
                   <Input1
                 value={this.state.quantity}
                 onChange={this.handleInputChange}
-                name="quantity"
-                placeholder="Qty)"
+                name={"quantity" + product._id}
+                placeholder="(Qty)"
               />
               <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
                     </ListItem>
