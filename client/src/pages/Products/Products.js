@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import { Input1 } from "../../components/Quantity";
+import Modal from "../../components/Modal";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
@@ -67,9 +68,7 @@ class Products extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
-              <h1>May I take your order?</h1>
-            </Jumbotron>
+       
             <form>
               <Input
                 value={this.state.category}
@@ -104,9 +103,11 @@ class Products extends Component {
             </form>
           </Col>
           <Col size="md-6">
-            <Jumbotron>
-              <h1>Products On My List</h1>
-            </Jumbotron>
+
+          <Modal>
+
+          </Modal>
+
             {this.state.products.length ? (
               <List>
                 {this.state.products.map(product => {
