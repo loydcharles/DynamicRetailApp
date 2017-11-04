@@ -86,7 +86,7 @@ class Orders extends Component {
                     <ListItem key={product._id}>
                       <a href={"/products/" + product._id}>
                         <strong>
-                          {product.category} ==> {product.item} ==> {product.price}
+                          {product.category} + {product.item} + {product.price}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteProduct(product._id)} />

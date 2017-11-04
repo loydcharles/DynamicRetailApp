@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
-import { Input1 } from "../../components/Quantity";
+//import { Input1 } from "../../components/Quantity";
+import PlusBtn from "../../components/PlusBtn";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, TextArea, FormBtn, OrderBtn } from "../../components/Form";
+
 
 class Products extends Component {
   // Setting our component's initial state
@@ -14,7 +16,9 @@ class Products extends Component {
     category: "",
     item: "",
     desc: "",
-    price: ""
+    price: "",
+    quantity: "",
+    productId: ""
   };
 
   // When the component mounts, load all products and save them to this.state.products
@@ -46,6 +50,12 @@ class Products extends Component {
     });
   };
 
+  loadOrder = event => {
+    API.saveOrder({
+      item: this.state.product._id,
+      quantity: this.state.quantity
+    })
+  }
   // When the form is submitted, use the API.saveProduct method to save the product data
   // Then reload products from the database
   handleFormSubmit = event => {
@@ -55,9 +65,22 @@ class Products extends Component {
         category: this.state.category,
         item: this.state.item,
         desc: this.state.desc,
-        price: this.state.price
+        price: this.state.price,
+        quantity: this.state.quantity,
+        productId: this.state.products._id
       })
         .then(res => this.loadProducts())
+        .catch(err => console.log(err));
+    }
+  };
+  handleFormSubmit1 = event => {
+    event.preventDefault();
+    if (this.state.value) {
+      API.saveProduct({
+        productId: this.state.product._id,
+        quantity: this.state.quantity
+      })
+        .then(console.log("added"))
         .catch(err => console.log(err));
     }
   };
@@ -117,22 +140,40 @@ class Products extends Component {
                           {product.category} ==> {product.item} ==> {product.price}
                         </strong>
                       </a>
-                  <Input1
-                value={this.state.quantity}
-                onChange={this.handleInputChange}
-                name={"quantity" + product._id}
-                placeholder="(Qty)"
-              />
+               <PlusBtn productId={"quantity" + product._id} 
+                onClick={() => this.addItem(product._id)}/> 
+              
+                
+
               <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
                     </ListItem>
+                  
                   );
                 })}
+                    <ListItem>
+          
+           </ListItem>
               </List>
+              
+        
+            
             ) : (
               <h3>No Results to Display</h3>
             )}
           </Col>
-        </Row>
+        
+        <List>
+          <ListItem>
+          
+        </ListItem>
+          </List>
+        <OrderBtn
+            
+             onClick={this.handleFormSubmit1}
+           >
+             Submit Product
+           </OrderBtn>
+          </Row>
       </Container>
     );
   }

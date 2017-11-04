@@ -1,2 +1,2 @@
-export * from "./Input1";
+export * from "./input1";
 export * from "./TextArea";

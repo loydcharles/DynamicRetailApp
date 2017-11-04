@@ -16,5 +16,8 @@ export default {
   // Saves a product to the database
   saveProduct: function(productData) {
     return axios.post("/api/products", productData);
-  }
+  }//,
+ /* saveOrder: function(orderElements) {
+    return axios.post("/api/products", saveOrder);
+  }*/
 };
