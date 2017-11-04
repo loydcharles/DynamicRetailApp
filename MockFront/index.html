@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<body>
+
+    <!-- Side Navigation -->
+   
+<!-- Sidebar -->
+<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+  <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+  <a href="#" class="w3-bar-item w3-button">Restruant View</a>
+  
+</div>
+    </nav>
+
+    <!-- Header -->
+    <header class="w3-container w3-theme w3-padding" id="myHeader">
+        <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>
+        <div class="w3-center">
+            <h4>Dynamic  Retail Application - The Back of House Presents</h4>
+            <h1 class="w3-xxxlarge w3-animate-bottom">Queen City Smokehouse</h1>
+            <div class="w3-padding-32">
+                <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">Order</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal -->
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-top">
+            <header class="w3-container w3-theme-l1">
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <h4>Queen City's Smokehouse Menu</h4>
+                <h5>Indulge because you can<i class="fa fa-smile-o"></i></h5>
+            </header>
+           <<div class="w3-cell-row">
+  <div class="w3-container  w3-cell">
+     <div class="w3-padding">
+                <button onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align">Beverages</button>
+                <div id="Demo1" class="w3-container w3-hide">
+                    <h4>Beer on Tap $5.50  <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Come experience the bar keeps favorite</p>
+                    <h4>Wine  <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Please ask our wine expert for what goes with your meal</p>
+                    <h4>Fountain Drinks $1.50  <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Finest selection of Pepsi and Coke products this side of the river</p>
+                </div>
+
+                <button onclick="myFunction('Demo2')" class="w3-btn w3-block w3-black w3-left-align">Appetizers</button>
+                <div id="Demo2" class="w3-container w3-hide">
+                    <h4>Loaded Cheese Fries $6.50 <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Experience your favorite vegetable, the french fries smothered in cheese</p>
+                    <h4>Stuffed Jalopenos $5.50 <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Nice and Spicy</p>
+                    <h4>Dixie Salad $10.50 <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Everything is bigger here even our salads which comes packed with BBQ chicken</p>
+                    <h4>Nachos Libre $8.50 <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Neverending parade of chips and salsa</p>
+                </div>
+
+                <button onclick="myFunction('Demo3')" class="w3-btn w3-block w3-black w3-left-align">The Meat</button>
+                <div id="Demo3" class="w3-container w3-hide">
+                    <h4>The Cuban $11.00 <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Cuban bread piled with hickory pork, ham, lettuce and tomato</p>
+                    <h4>Texas Styled Burger $12.50 <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>Texas Styled Beef BBQ layered with Chef's special sauce on Texas toast with smoked red onions.</p>
+                    <h4>Ribeye 8oz $12.50 <a class="w3-button w3-circle w3-large w3-theme-dark"><i class="fa fa-plus"></i></a>
+</h4>
+                    <p>USDA Grade A steak comes with choice of salad and fries or potatoes</p>
+                </div>
+                <script>
+                    function myFunction(id) {
+                        var x = document.getElementById(id);
+                        if (x.className.indexOf("w3-show") == -1) {
+                            x.className += " w3-show";
+                        } else {
+                            x.className = x.className.replace(" w3-show", "");
+                        }
+                    }
+                </script>
+            </div>
+  </div>
+  <div class="w3-container w3-cell">
+    <div class="w3-panel w3-black">
+  <p>Order</p>
+ <ul class="w3-ul w3-card-4">
+    <li class="w3-display-container">Jill <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+    <li class="w3-display-container">Adam <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+    <li class="w3-display-container">Eve <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+  </ul>
+</div>
+<br>
+<br>
+<div class="w3-cell-row">
+  <div class="w3-container w3-white w3-cell">
+    <p>Subtotal</p>
+  </div>
+  <div class="w3-container w3-white w3-cell">
+    <a href="#" class="w3-btn w3-black">Submit</a>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
