@@ -22,13 +22,13 @@ class Products extends Component {
     this.loadProducts();
   }
 
-  // Loads all products  and sets them to this.state.products
+  // Loads all products and sets them to this.state.products
   loadProducts = () => {
     API.getProducts()
       .then(res =>
-        this.setState({ products: res.data, category: "", item: "", desc: "", price: "" })
+        this.setState({ products: res.data, category: "", item: "", desc: "", price: "" }) 
       )
-      .catch(err => console.log(err));
+      .catch(err => console.log(err));      
   };
 
   // Deletes a product from the database with a given id, then reloads products from the db

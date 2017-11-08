@@ -43,13 +43,6 @@ const productSeed = [
   }
 ];
 
-const orderSeed = [
-  {
-    quantity: 1,
-    product: [],
-    date: new Date(Date.now())
-  }];
-
 db.Product
   .remove({})
   .then(() => db.Product.collection.insertMany(productSeed))

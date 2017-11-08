@@ -10,11 +10,12 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 class Orders extends Component {
   // Setting our component's initial state
   state = {
-    products: [],
-    quantity: ""
-  };
+    orders: [],    
+    customer_name: "",
+    date: ""
+  }
 
-  // When the component mounts, load all orders and save them to this.state.products
+  // When the component mounts, load all orders and save them to this.state.orders
   componentDidMount() {
     this.loadOrders();
   }
@@ -22,11 +23,15 @@ class Orders extends Component {
   // Loads all orders  and sets them to this.state.orders
   loadOrders = () => {
     API.getOrders()
-      .then(res =>
-        this.setState({ Orders: res.data, products: "", quantity: ""})
+      .then(res => {
+        this.setState({ orders: [...this.state.orders, ...res.data] 
+            
+                      })
+        console.log(this.state.orders);          }                              
       )
       .catch(err => console.log(err));
   };
+
 
   // Deletes a order from the database with a given id, then reloads orders from the db
   deleteOrder = id => {
@@ -50,8 +55,9 @@ class Orders extends Component {
     console.log(this.state.quantity);
     if (this.state.quantity) {
       API.saveOrder({
-        quantity: this.state.quantity,
-        product: this.state.product
+        customer_name: this.state.customer_name,        
+        date: this.state.date,
+        cart: this.state.cart[{}]
       })
         .then(res => this.loadOrders())
         .catch(err => console.log(err));
@@ -59,6 +65,7 @@ class Orders extends Component {
   };
 
   render() {
+    console.log(this.state.orders); 
     return (
       <Container fluid>
         <Row>
@@ -68,28 +75,43 @@ class Orders extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.quantity}
+                value={this.state.customer_name}
                 onChange={this.handleInputChange}
-                name="quantity"
-                placeholder="Quantity (required)"
-              />
+                name="customer_name"
+                placeholder="customer name (required)"
+            />
             </form>
           </Col>
           { <Col size="md-6">
             <Jumbotron>
-              <h1>Products On My List</h1>
-            </Jumbotron>
-            {this.state.products.length ? (
+              <h1>Orders On My List</h1>
+            </Jumbotron>                       
+            {this.state.orders.length ? (                  
               <List>
-                {this.state.products.map(product => {
+                {this.state.orders.map(order => {
                   return (
-                    <ListItem key={product._id}>
-                      <a href={"/products/" + product._id}>
+                    <ListItem key={order._id}>   
+                    < a href={"/orders/" + order._id}>                                          
                         <strong>
-                          {product.category} ==> {product.item} ==> {product.price}
+                          {order.customer_name} => {order.date}
                         </strong>
-                      </a>
-                      <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
+                        </a>
+                      <List>
+                      {order.cart.map((item, idx) => {
+                        return (
+                          <ListItem key={idx}>
+                            <strong>
+                              {item.item}
+                            </strong>
+                          </ListItem>
+                        )
+                      
+                    }
+                  )
+                      }
+                      </List>
+                     
+                      <DeleteBtn onClick={() => this.deleteOrder(order._id)} />
                     </ListItem>
                   );
                 })}
