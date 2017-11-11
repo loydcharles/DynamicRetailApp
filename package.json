@@ -8,10 +8,10 @@
     "client": "node scripts/start-client.js",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
-    "seed": "node scripts/seedDB.js",
+    "seed": "node scripts/ProductSeedDB.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Team",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
