@@ -1,82 +1,19 @@
-import React, { Component } from 'react';
-// import Products from "./pages/Products/Products.js";
-import { Navbar, Nav, Button } from 'react-bootstrap';
 
-// import Orders from "./pages/Products/Orders.js";
-// const App = () =>
-//   <div>
-//     <Nav />
-//     <Products />
-//     <Orders />
-//   </div>;
-class App extends Component {
-  // This function helps with navigation of different routes
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
-  // This function calls on the auth login() function and logs in a user with Auth0
-  login() {
-    this.props.auth.login();
-  }
-  // This function calls on the auth logout() function and clears the localStorage thereby logging a user out.
-  logout() {
-    this.props.auth.logout();
-  }
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Products from "./pages/Products/Products.js";
+import Orders from "./pages/Products/Orders.js";
+import Navpills from "./pages/Navpills.js";
 
-  render() {
-    // Destructuring assignment syntax is used to get the isAuthenticated function from the Authentication service in Auth.js
-    const { isAuthenticated } = this.props.auth;
+const App = () => 
+<Router>
+<div>
+  <Navpills />  
+  <Route exact path="/Products" component={Products} />
+  <Route exact path="/Orders" component={Orders} />
+  {/*<Route path="/Fullfil" component={Fullfil} />  */}
+</div>
+</Router>;
 
-    return (
-      <div>
-        <Navbar className="no-border" fluid inverse>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href="/home">React-Retail-App</a>
-            </Navbar.Brand>
-          </Navbar.Header>
-          <Nav className="pull-right">
-            <Button
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
-            {
-              !isAuthenticated() && (
-                <Button
-                  className="btn-margin"
-                  onClick={this.login.bind(this)}
-                >
-                  Login
-                      </Button>
-              )
-            }
-            {
-              isAuthenticated() && (
-                <Button
-                  className="btn-margin"
-                  onClick={this.goTo.bind(this, 'profile')}
-                >
-                  Profile
-                      </Button>
-              )
-            }
-            {
-              isAuthenticated() && (
-                <Button
-                  className="btn-margin"
-                  onClick={this.logout.bind(this)}
-                >
-                  Log Out
-                      </Button>
-              )
-            }
-          </Nav>
-        </Navbar>
-      </div>
-    );
-  }
-}
 
 export default App;

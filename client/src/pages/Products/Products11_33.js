@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactTable from 'react-table';
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
@@ -93,7 +94,6 @@ class Products extends Component {
                 onChange={this.handleInputChange}
                 name="desc"
                 placeholder="Desc (Optional)"
-                maxlength="2"
               />
               <FormBtn
                 disabled={!(this.state.category && this.state.item && this.state.price)}
@@ -110,19 +110,20 @@ class Products extends Component {
               <List>
                 {this.state.products.map(product => {
                   return (
-                    <ul>
-                      <ListItem key={product._id}>
-                        <a href={"/products/" + product._id}>
-                          <strong>                                                             
-                             {product.category} { } {product.item} { } {product.price}                            
-                          </strong>
-                        </a>
-                        <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
-                      </ListItem>
-                    </ul>
-
+                    <ListItem key={product._id}>
+                      <a href={"/products/" + product._id}>
+                        <strong>                                                  
+                          <tr>                          
+                            <td>{product.category}</td>
+                            <td>{product.item}</td>
+                            <td>{product.price}</td>
+                          </tr>                        
+                          {product.category} ==> {product.item} ==> {product.price}                                                 
+                        </strong>
+                      </a>
+                      <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
+                    </ListItem>
                   );
-                  
                 })}
               </List>              
             ) : (

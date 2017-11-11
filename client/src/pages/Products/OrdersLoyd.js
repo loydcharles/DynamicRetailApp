@@ -6,20 +6,15 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
-import moment from 'moment';
-
-
 
 class Orders extends Component {
   // Setting our component's initial state
   state = {
     orders: [],    
     customer_name: "",
-    date: "",
-    price: "",
-    total: ""
+    date: ""
   }
-  
+
   // When the component mounts, load all orders and save them to this.state.orders
   componentDidMount() {
     this.loadOrders();
@@ -29,9 +24,11 @@ class Orders extends Component {
   loadOrders = () => {
     API.getOrders()
       .then(res => {
-        this.setState({ orders: [...this.state.orders, ...res.data]})
-        console.log(this.state.orders);
-      })
+        this.setState({ orders: [...this.state.orders, ...res.data] 
+            
+                      })
+        console.log(this.state.orders);          }                              
+      )
       .catch(err => console.log(err));
   };
 
@@ -41,6 +38,14 @@ class Orders extends Component {
     API.deleteOrder(id)
       .then(res => this.loadOrders())
       .catch(err => console.log(err));
+  };
+
+  // Handles updating component state when the user types into the input field
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   // When the form is submitted, use the API.saveOrder method to save the order data
@@ -59,12 +64,24 @@ class Orders extends Component {
     }
   };
 
-   
   render() {
     console.log(this.state.orders); 
     return (
       <Container fluid>
-    
+        <Row>
+          <Col size="md-6">
+            <Jumbotron>
+              <h1>My Order</h1>
+            </Jumbotron>
+            <form>
+              <Input
+                value={this.state.customer_name}
+                onChange={this.handleInputChange}
+                name="customer_name"
+                placeholder="customer name (required)"
+            />
+            </form>
+          </Col>
           { <Col size="md-6">
             <Jumbotron>
               <h1>Orders On My List</h1>
@@ -76,59 +93,33 @@ class Orders extends Component {
                     <ListItem key={order._id}>   
                     < a href={"/orders/" + order._id}>                                          
                         <strong>
-
-                        
-
-                          Customer: {order.customer_name} Order Date: {order.date} 
+                          {order.customer_name} => {order.date}
                         </strong>
                         </a>
                       <List>
                       {order.cart.map((item, idx) => {
                         return (
-                          <ListItem key={idx} >
-                         
+                          <ListItem key={idx}>
                             <strong>
                               {item.item}
-                              </strong>
-                              <div className="box-footer" style={{textAlign:"left"}}> 
-                            
-                              Quantity: {item.quantity}
-                              </div>
-                             
-                             <div className="box-footer" style={{textAlign:"left"}}> 
-                            
-                              Price: ${item.price}
-                              </div>
-                          <div className="box-footer" style={{textAlign:"right"}}>
-
-                            Sub Total: ${item.price * item.quantity}
-                            </div>
-                          
+                            </strong>
                           </ListItem>
-                         
-
-                            
-                      )
-                      
-                    }
-                                      )
-                                        }
+                        )}
+                      )}
                       </List>                     
-                      <div className="box-footer" style={{textAlign:"center"}}>Total: $                      
-                      </div>
-                    </ListItem>                    
-                  );                  
+                      <DeleteBtn onClick={() => this.deleteOrder(order._id)} />
+                    </ListItem>
+                  );
                 })}
               </List>
             ) : (
               <h3>No Results to Display</h3>
             )}
-          </Col>}        
+          </Col>}
+        </Row>
       </Container>
     );
   }
 }
 
-
 export default Orders;
-
