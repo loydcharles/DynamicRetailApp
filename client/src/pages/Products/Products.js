@@ -93,6 +93,7 @@ class Products extends Component {
                 onChange={this.handleInputChange}
                 name="desc"
                 placeholder="Desc (Optional)"
+                maxlength="2"
               />
               <FormBtn
                 disabled={!(this.state.category && this.state.item && this.state.price)}
@@ -119,7 +120,9 @@ class Products extends Component {
                         <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
                       </ListItem>
                     </ul>
+
                   );
+                  
                 })}
               </List>              
             ) : (
