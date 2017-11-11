@@ -31,3 +31,6 @@
 .list-overflow-container li:last-child {
   border-bottom: none;
 }
+.price {
+  text-align: right;
+}

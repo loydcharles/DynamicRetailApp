@@ -94,6 +94,7 @@ class Products extends Component {
                 onChange={this.handleInputChange}
                 name="desc"
                 placeholder="Desc (Optional)"
+                maxlength="2"
               />
               <FormBtn
                 disabled={!(this.state.category && this.state.item && this.state.price)}
@@ -111,21 +112,29 @@ class Products extends Component {
               <List>
                 {this.state.products.map(product => {
                   return (
-                    <ListItem key={product._id}>
-                      <a href={"/products/" + product._id}>
-                        <strong>
-                          {product.category} ==> {product.item} ==> {product.price}
-                        </strong>
+                    <ListItem key={product._id} >
+
+                      <a href={"/products/" + product._id}><strong> {product.category}  </strong>
+                      : {product.item}
+                      <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
                       </a>
-                  <Input1
+                                    
+                      <p>
+                      Price $ {product.price} 
+                      </p>
+                       <Input1
                 value={this.state.quantity}
                 onChange={this.handleInputChange}
                 name="quantity"
-                placeholder="Qty)"
+                placeholder="(Qty)"
+                class="input1"
+                maxlength="2"
               />
-              <DeleteBtn onClick={() => this.deleteProduct(product._id)} />
+             
                     </ListItem>
+                    
                   );
+                  
                 })}
               </List>
             ) : (
